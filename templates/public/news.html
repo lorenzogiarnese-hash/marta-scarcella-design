@@ -1,0 +1,37 @@
+{% extends "public/base.html" %}
+{% block title %}News — Marta Scarcella Design{% endblock %}
+
+{% block content %}
+<div class="page-hero">
+  <span class="section-label">Aggiornamenti</span>
+  <h1>News & Journal</h1>
+</div>
+
+<section>
+  {% if articoli %}
+  <div class="news-grid">
+    {% for articolo in articoli %}
+    <div class="news-card" onclick="window.location='/news/{{ articolo.slug }}'">
+      <div class="news-img" {% if articolo.immagine_cover %}
+           style="background-image:url('/media/{{ articolo.immagine_cover }}');background-size:cover;background-position:center;"
+           {% endif %}>
+        {% if not articolo.immagine_cover %}
+        <span class="portfolio-placeholder">Immagine articolo</span>
+        {% endif %}
+      </div>
+      <div class="news-content">
+        <span class="news-tag">{{ articolo.tag }}</span>
+        <h3>{{ articolo.titolo }}</h3>
+        <p>{{ articolo.anteprima }}</p>
+        <span class="news-date">{{ articolo.creato_il.strftime("%d %B %Y") }}</span>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div style="text-align:center;padding:6rem 0;">
+    <p>Nessun articolo pubblicato al momento.</p>
+  </div>
+  {% endif %}
+</section>
+{% endblock %}

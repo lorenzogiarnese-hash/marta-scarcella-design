@@ -1,0 +1,90 @@
+{% extends "public/base.html" %}
+{% block title %}{{ progetto.titolo }} — Marta Scarcella Design{% endblock %}
+
+{% block content %}
+<div class="page-hero">
+  <span class="section-label">{{ progetto.categoria }} · {{ progetto.location }}</span>
+  <h1>{{ progetto.titolo }}</h1>
+</div>
+
+<section style="padding:5rem 4rem;">
+  <div style="display:grid;grid-template-columns:2fr 1fr;gap:5rem;align-items:start;">
+    <div>
+      {% if progetto.immagine_cover %}
+      <img src="/media/{{ progetto.immagine_cover }}" alt="{{ progetto.titolo }}"
+           style="width:100%;aspect-ratio:16/9;object-fit:cover;margin-bottom:3rem;">
+      {% else %}
+      <div style="width:100%;aspect-ratio:16/9;background:linear-gradient(135deg,#D9D0C1,#C4B99F);margin-bottom:3rem;"></div>
+      {% endif %}
+
+      {% if progetto.descrizione %}
+      <div style="font-size:1rem;line-height:2;color:var(--mid);">
+        {{ progetto.descrizione }}
+      </div>
+      {% endif %}
+
+      {% if progetto.immagini %}
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:3rem;">
+        {% for img in progetto.immagini %}
+        <img src="/media/{{ img.path }}" alt="{{ img.didascalia }}"
+             style="width:100%;aspect-ratio:4/3;object-fit:cover;">
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+
+    <div style="position:sticky;top:120px;">
+      <div class="divider"></div>
+      {% if progetto.anno %}
+      <div class="contact-detail" style="margin-bottom:1.5rem;">
+        <span class="section-label">Anno</span>
+        <span style="color:var(--charcoal);font-size:1rem;">{{ progetto.anno }}</span>
+      </div>
+      {% endif %}
+      {% if progetto.categoria %}
+      <div class="contact-detail" style="margin-bottom:1.5rem;">
+        <span class="section-label">Categoria</span>
+        <span style="color:var(--charcoal);font-size:1rem;">{{ progetto.categoria }}</span>
+      </div>
+      {% endif %}
+      {% if progetto.location %}
+      <div class="contact-detail" style="margin-bottom:1.5rem;">
+        <span class="section-label">Location</span>
+        <span style="color:var(--charcoal);font-size:1rem;">{{ progetto.location }}</span>
+      </div>
+      {% endif %}
+      <div style="margin-top:3rem;">
+        <a href="/contatti" class="btn btn-accent" style="display:block;text-align:center;">
+          Richiedi una consulenza
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% if altri %}
+<section style="padding:3rem 4rem 6rem;background:var(--cream);">
+  <div class="section-header">
+    <div>
+      <span class="section-label">Esplora ancora</span>
+      <h2>Altri progetti</h2>
+    </div>
+  </div>
+  <div class="progetti-lista">
+    {% for p in altri %}
+    <div class="progetto-card" onclick="window.location='/portfolio/{{ p.slug }}'">
+      <div class="progetto-card-img">
+        {% if p.immagine_cover %}
+        <img src="/media/{{ p.immagine_cover }}" alt="{{ p.titolo }}">
+        {% endif %}
+      </div>
+      <div class="progetto-card-body">
+        <span class="news-tag">{{ p.categoria }}</span>
+        <h3>{{ p.titolo }}</h3>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+{% endblock %}

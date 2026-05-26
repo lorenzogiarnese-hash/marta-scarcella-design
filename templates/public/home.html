@@ -1,0 +1,85 @@
+{% extends "public/base.html" %}
+{% block title %}Marta Scarcella Design — Interior Design Milano{% endblock %}
+
+{% block content %}
+<section id="home">
+  <div class="hero-text">
+    <span class="section-label">Interior Design · Milano</span>
+    <h1>Spazi che<br><em>raccontano</em><br>la tua storia.</h1>
+    <p>Progettiamo ambienti che fondono estetica e funzionalità, trasformando ogni spazio in un'esperienza senza tempo.</p>
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+      <a href="/portfolio" class="btn">Esplora il portfolio</a>
+      <a href="/contatti" class="btn btn-accent">Richiedi una consulenza</a>
+    </div>
+  </div>
+  <div style="position:relative;">
+    <div class="hero-image">
+      <div class="hero-image-inner">
+        <div class="hero-image-placeholder">
+          <p>Immagine principale</p>
+        </div>
+      </div>
+    </div>
+    <div class="hero-badge">
+      <span class="hero-badge-num">12+</span>
+      <span class="hero-badge-label">Anni di esperienza</span>
+    </div>
+  </div>
+</section>
+
+{% if progetti %}
+<section id="portfolio">
+  <div class="section-header">
+    <div>
+      <span class="section-label">Lavori selezionati</span>
+      <h2>Portfolio</h2>
+    </div>
+    <a href="/portfolio" class="btn">Tutti i progetti</a>
+  </div>
+  <div class="portfolio-grid">
+    {% for progetto in progetti %}
+    <div class="portfolio-item" onclick="window.location='/portfolio/{{ progetto.slug }}'">
+      <div class="portfolio-img" {% if progetto.immagine_cover %}style="background-image:url('/media/{{ progetto.immagine_cover }}');background-size:cover;background-position:center;"{% endif %}>
+        <div class="portfolio-overlay">
+          <div class="portfolio-info">
+            <h3>{{ progetto.titolo }}</h3>
+            <span>{{ progetto.categoria }} · {{ progetto.location }}</span>
+          </div>
+        </div>
+        {% if not progetto.immagine_cover %}
+        <span class="portfolio-placeholder">Progetto 0{{ loop.index }}</span>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+{% if articoli %}
+<section id="news">
+  <div class="section-header">
+    <div>
+      <span class="section-label">Aggiornamenti</span>
+      <h2>News & Journal</h2>
+    </div>
+    <a href="/news" class="btn">Tutti gli articoli</a>
+  </div>
+  <div class="news-grid">
+    {% for articolo in articoli %}
+    <div class="news-card" onclick="window.location='/news/{{ articolo.slug }}'">
+      <div class="news-img" {% if articolo.immagine_cover %}style="background-image:url('/media/{{ articolo.immagine_cover }}');background-size:cover;background-position:center;"{% endif %}>
+        {% if not articolo.immagine_cover %}<span class="portfolio-placeholder">Immagine articolo</span>{% endif %}
+      </div>
+      <div class="news-content">
+        <span class="news-tag">{{ articolo.tag }}</span>
+        <h3>{{ articolo.titolo }}</h3>
+        <p>{{ articolo.anteprima }}</p>
+        <span class="news-date">{{ articolo.creato_il.strftime("%d %B %Y") }}</span>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+{% endblock %}

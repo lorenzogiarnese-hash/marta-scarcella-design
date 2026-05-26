@@ -1,0 +1,38 @@
+{% extends "admin/base.html" %}
+{% block page_title %}Servizi{% endblock %}
+
+{% block content %}
+<div class="card">
+  <div class="card-title">Modifica i servizi</div>
+  {% for s in servizi %}
+  <form method="POST" action="/admin/servizi/{{ s.id }}/modifica"
+        style="border-bottom:1px solid var(--border);padding:1.5rem 0;">
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Numero</label>
+        <input type="text" name="numero" value="{{ s.numero }}" style="max-width:80px;">
+      </div>
+      <div class="form-group">
+        <label>Ordine</label>
+        <input type="number" name="ordine" value="{{ s.ordine }}" style="max-width:80px;">
+      </div>
+      <div class="form-group full">
+        <label>Titolo</label>
+        <input type="text" name="titolo" value="{{ s.titolo }}">
+      </div>
+      <div class="form-group full">
+        <label>Descrizione</label>
+        <textarea name="descrizione">{{ s.descrizione }}</textarea>
+      </div>
+      <div class="form-group">
+        <div class="checkbox-group">
+          <input type="checkbox" name="attivo" id="attivo_{{ s.id }}" {{ 'checked' if s.attivo else '' }}>
+          <label for="attivo_{{ s.id }}">Attivo</label>
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-sm btn-accent">Salva</button>
+  </form>
+  {% endfor %}
+</div>
+{% endblock %}

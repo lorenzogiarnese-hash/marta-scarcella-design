@@ -1,0 +1,83 @@
+{% extends "public/base.html" %}
+{% block title %}Contatti — Marta Scarcella Design{% endblock %}
+
+{% block content %}
+<div class="page-hero">
+  <span class="section-label">Parliamoci</span>
+  <h1>Inizia il tuo progetto</h1>
+</div>
+
+<section id="contatti">
+  <div class="contact-layout">
+    <div class="contact-info">
+      <p>Ogni grande spazio nasce da una conversazione. Raccontaci il tuo progetto e costruiremo insieme qualcosa di straordinario.</p>
+      <div class="contact-divider"></div>
+      <div class="contact-detail">
+        <span class="contact-detail-label">Studio</span>
+        <span class="contact-detail-value">Via Tortona 31, 20144 Milano</span>
+      </div>
+      <div class="contact-detail">
+        <span class="contact-detail-label">Email</span>
+        <span class="contact-detail-value">studio@martascarcelladesign.it</span>
+      </div>
+      <div class="contact-detail">
+        <span class="contact-detail-label">Telefono</span>
+        <span class="contact-detail-value">+39 02 1234 5678</span>
+      </div>
+      <div class="contact-detail">
+        <span class="contact-detail-label">Orari</span>
+        <span class="contact-detail-value">Lun – Ven, 9:00 – 18:00</span>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      {% if successo %}
+      <div class="alert-success" style="margin-bottom:2rem;">
+        ✓ Messaggio inviato. Ti risponderemo entro 24 ore.
+      </div>
+      {% endif %}
+      {% if errore %}
+      <div class="alert-error" style="margin-bottom:2rem;">{{ errore }}</div>
+      {% endif %}
+
+      <form method="POST" action="/contatti">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nome *</label>
+            <input type="text" name="nome" placeholder="Il tuo nome" required>
+          </div>
+          <div class="form-group">
+            <label>Cognome</label>
+            <input type="text" name="cognome" placeholder="Il tuo cognome">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email *</label>
+          <input type="email" name="email" placeholder="nome@esempio.it" required>
+        </div>
+        <div class="form-group">
+          <label>Tipologia di progetto</label>
+          <select name="tipo_progetto">
+            <option value="">Seleziona una categoria</option>
+            <option>Residenziale — appartamento</option>
+            <option>Residenziale — villa / casa</option>
+            <option>Contract / commerciale</option>
+            <option>Hospitality</option>
+            <option>Consulenza / styling</option>
+            <option>Home staging</option>
+            <option>Altro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Messaggio *</label>
+          <textarea name="testo" placeholder="Raccontaci il tuo progetto…" required></textarea>
+        </div>
+        <div class="form-submit">
+          <button type="submit" class="btn-submit">Invia richiesta</button>
+          <p class="form-note">Risponderemo entro<br>24 ore lavorative.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

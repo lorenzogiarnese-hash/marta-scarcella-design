@@ -1,0 +1,57 @@
+{% extends "admin/base.html" %}
+{% block page_title %}{{ 'Modifica articolo' if articolo else 'Nuovo articolo' }}{% endblock %}
+{% block topbar_actions %}
+  <a href="/admin/articoli" class="btn">← Torna alla lista</a>
+{% endblock %}
+
+{% block content %}
+<div class="card">
+  <form method="POST"
+        action="{{ '/admin/articoli/' + articolo.id|string + '/modifica' if articolo else '/admin/articoli/nuovo' }}"
+        enctype="multipart/form-data">
+
+    <div class="form-grid">
+      <div class="form-group full">
+        <label>Titolo *</label>
+        <input type="text" name="titolo" value="{{ articolo.titolo if articolo else '' }}" required>
+      </div>
+      <div class="form-group">
+        <label>Tag / Categoria</label>
+        <input type="text" name="tag" value="{{ articolo.tag if articolo else '' }}"
+               placeholder="es. Tendenze, Progetto…">
+      </div>
+      <div class="form-group">
+        <label>Immagine cover</label>
+        {% if articolo and articolo.immagine_cover %}
+        <img src="/media/{{ articolo.immagine_cover }}"
+             style="width:100%;max-height:120px;object-fit:cover;margin-bottom:0.5rem;">
+        {% endif %}
+        <input type="file" name="immagine_cover" accept="image/*">
+      </div>
+      <div class="form-group full">
+        <label>Testo anteprima (per le card)</label>
+        <input type="text" name="anteprima" value="{{ articolo.anteprima if articolo else '' }}"
+               placeholder="Breve descrizione visibile nelle card…">
+      </div>
+      <div class="form-group full">
+        <label>Contenuto completo</label>
+        <textarea name="contenuto" style="min-height:300px;">{{ articolo.contenuto if articolo else '' }}</textarea>
+      </div>
+      <div class="form-group">
+        <div class="checkbox-group">
+          <input type="checkbox" name="pubblicato" id="pubblicato"
+                 {{ 'checked' if articolo and articolo.pubblicato else '' }}>
+          <label for="pubblicato">Pubblicato</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-accent">
+        {{ 'Salva modifiche' if articolo else 'Crea articolo' }}
+      </button>
+      <a href="/admin/articoli" class="btn">Annulla</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

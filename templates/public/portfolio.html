@@ -1,0 +1,57 @@
+{% extends "public/base.html" %}
+{% block title %}Portfolio — Marta Scarcella Design{% endblock %}
+
+{% block content %}
+<div class="page-hero">
+  <span class="section-label">Lavori selezionati</span>
+  <h1>Portfolio</h1>
+</div>
+
+<section style="padding: 5rem 4rem;">
+  {% if categorie %}
+  <div class="filtri" style="display:flex;gap:1rem;margin-bottom:3rem;flex-wrap:wrap;">
+    <button class="filtro-btn active" data-categoria="tutti">Tutti</button>
+    {% for cat in categorie %}
+    <button class="filtro-btn" data-categoria="{{ cat }}">{{ cat }}</button>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  {% if progetti %}
+  <div class="progetti-lista">
+    {% for progetto in progetti %}
+    <div class="progetto-card" data-categoria="{{ progetto.categoria }}"
+         onclick="window.location='/portfolio/{{ progetto.slug }}'">
+      <div class="progetto-card-img">
+        {% if progetto.immagine_cover %}
+        <img src="/media/{{ progetto.immagine_cover }}" alt="{{ progetto.titolo }}">
+        {% endif %}
+      </div>
+      <div class="progetto-card-body">
+        <span class="news-tag">{{ progetto.categoria }} · {{ progetto.location }}</span>
+        <h3>{{ progetto.titolo }}</h3>
+        <p>{{ progetto.anno }}</p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div style="text-align:center;padding:6rem 0;">
+    <p>Nessun progetto pubblicato al momento.</p>
+  </div>
+  {% endif %}
+</section>
+
+<script>
+  document.querySelectorAll('.filtro-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const cat = btn.dataset.categoria;
+      document.querySelectorAll('.progetto-card').forEach(card => {
+        card.style.display = (cat === 'tutti' || card.dataset.categoria === cat) ? 'block' : 'none';
+      });
+    });
+  });
+</script>
+{% endblock %}

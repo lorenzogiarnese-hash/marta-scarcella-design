@@ -1,0 +1,43 @@
+{% extends "admin/base.html" %}
+{% block page_title %}Messaggi{% endblock %}
+
+{% block content %}
+<div class="card">
+  <div class="card-title">Tutti i messaggi</div>
+  {% if messaggi %}
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Mittente</th><th>Email</th><th>Progetto</th><th>Ricevuto</th><th>Stato</th><th></th></tr>
+      </thead>
+      <tbody>
+        {% for m in messaggi %}
+        <tr>
+          <td class="td-title">{{ m.nome }} {{ m.cognome }}</td>
+          <td>{{ m.email }}</td>
+          <td>{{ m.tipo_progetto or '—' }}</td>
+          <td>{{ m.ricevuto_il.strftime("%d/%m/%Y %H:%M") }}</td>
+          <td>
+            {% if m.letto %}
+            <span class="badge badge-gray">Letto</span>
+            {% else %}
+            <span class="badge badge-amber">Nuovo</span>
+            {% endif %}
+          </td>
+          <td style="display:flex;gap:0.5rem;">
+            <a href="/admin/messaggi/{{ m.id }}" class="btn btn-sm">Leggi</a>
+            <form method="POST" action="/admin/messaggi/{{ m.id }}/elimina"
+                  onsubmit="return confirm('Eliminare questo messaggio?')">
+              <button type="submit" class="btn btn-sm btn-danger">Elimina</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <div class="empty-state">Nessun messaggio ricevuto.</div>
+  {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends "admin/base.html" %}
+{% block page_title %}Progetti{% endblock %}
+{% block topbar_actions %}
+  <a href="/admin/progetti/nuovo" class="btn btn-accent">+ Nuovo progetto</a>
+{% endblock %}
+
+{% block content %}
+<div class="card">
+  <div class="card-title">Tutti i progetti</div>
+  {% if progetti %}
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Titolo</th>
+          <th>Categoria</th>
+          <th>Location</th>
+          <th>Anno</th>
+          <th>Evidenza</th>
+          <th>Stato</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for p in progetti %}
+        <tr>
+          <td class="td-title">{{ p.titolo }}</td>
+          <td>{{ p.categoria or '—' }}</td>
+          <td>{{ p.location or '—' }}</td>
+          <td>{{ p.anno or '—' }}</td>
+          <td>{{ '★' if p.in_evidenza else '—' }}</td>
+          <td>
+            {% if p.pubblicato %}
+            <span class="badge badge-green">Pubblicato</span>
+            {% else %}
+            <span class="badge badge-gray">Bozza</span>
+            {% endif %}
+          </td>
+          <td style="display:flex;gap:0.5rem;">
+            <a href="/admin/progetti/{{ p.id }}/modifica" class="btn btn-sm">Modifica</a>
+            <form method="POST" action="/admin/progetti/{{ p.id }}/elimina"
+                  onsubmit="return confirm('Eliminare il progetto?')">
+              <button type="submit" class="btn btn-sm btn-danger">Elimina</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <div class="empty-state">
+    Nessun progetto ancora. <a href="/admin/progetti/nuovo">Crea il primo.</a>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

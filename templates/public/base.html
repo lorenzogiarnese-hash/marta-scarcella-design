@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Marta Scarcella Design{% endblock %}</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/main.css">
+  {% block extra_head %}{% endblock %}
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">Marta Scarcella <span>&middot;</span> Design</a>
+  <ul class="nav-links">
+    <li><a href="/" {% if request.url.path == "/" %}class="active"{% endif %}>Home</a></li>
+    <li><a href="/portfolio" {% if "/portfolio" in request.url.path %}class="active"{% endif %}>Portfolio</a></li>
+    <li><a href="/servizi" {% if "/servizi" in request.url.path %}class="active"{% endif %}>Servizi</a></li>
+    <li><a href="/news" {% if "/news" in request.url.path %}class="active"{% endif %}>News</a></li>
+    <li><a href="/contatti" {% if "/contatti" in request.url.path %}class="active"{% endif %}>Contatti</a></li>
+  </ul>
+</nav>
+
+<main>
+  {% block content %}{% endblock %}
+</main>
+
+<footer>
+  <p>&copy; {{ now.year if now else "2025" }} Marta Scarcella Design — P.IVA 12345678901</p>
+  <div class="footer-links">
+    <a href="#">Privacy Policy</a>
+    <a href="#">Cookie Policy</a>
+    <a href="#">Instagram</a>
+    <a href="#">LinkedIn</a>
+  </div>
+</footer>
+
+</body>
+</html>

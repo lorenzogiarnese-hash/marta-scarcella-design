@@ -1,0 +1,45 @@
+{% extends "admin/base.html" %}
+{% block page_title %}Articoli{% endblock %}
+{% block topbar_actions %}
+  <a href="/admin/articoli/nuovo" class="btn btn-accent">+ Nuovo articolo</a>
+{% endblock %}
+
+{% block content %}
+<div class="card">
+  <div class="card-title">Tutti gli articoli</div>
+  {% if articoli %}
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Titolo</th><th>Tag</th><th>Data</th><th>Stato</th><th></th></tr>
+      </thead>
+      <tbody>
+        {% for a in articoli %}
+        <tr>
+          <td class="td-title">{{ a.titolo }}</td>
+          <td>{{ a.tag or '—' }}</td>
+          <td>{{ a.creato_il.strftime("%d/%m/%Y") }}</td>
+          <td>
+            {% if a.pubblicato %}
+            <span class="badge badge-green">Pubblicato</span>
+            {% else %}
+            <span class="badge badge-gray">Bozza</span>
+            {% endif %}
+          </td>
+          <td style="display:flex;gap:0.5rem;">
+            <a href="/admin/articoli/{{ a.id }}/modifica" class="btn btn-sm">Modifica</a>
+            <form method="POST" action="/admin/articoli/{{ a.id }}/elimina"
+                  onsubmit="return confirm('Eliminare questo articolo?')">
+              <button type="submit" class="btn btn-sm btn-danger">Elimina</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <div class="empty-state">Nessun articolo ancora. <a href="/admin/articoli/nuovo">Crea il primo.</a></div>
+  {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "public/base.html" %}
+{% block title %}{{ articolo.titolo }} — Marta Scarcella Design{% endblock %}
+
+{% block content %}
+<div class="page-hero">
+  <span class="section-label">{{ articolo.tag }}</span>
+  <h1>{{ articolo.titolo }}</h1>
+  <p style="margin-top:1rem;color:var(--light);font-size:0.8rem;letter-spacing:0.1em;">
+    {{ articolo.creato_il.strftime("%d %B %Y") }}
+  </p>
+</div>
+
+<section>
+  <div style="display:grid;grid-template-columns:2fr 1fr;gap:5rem;">
+    <article>
+      {% if articolo.immagine_cover %}
+      <img src="/media/{{ articolo.immagine_cover }}" alt="{{ articolo.titolo }}"
+           style="width:100%;aspect-ratio:16/9;object-fit:cover;margin-bottom:3rem;">
+      {% endif %}
+      <div style="font-size:1rem;line-height:2;color:var(--mid);">
+        {{ articolo.contenuto | safe }}
+      </div>
+    </article>
+    <aside style="position:sticky;top:120px;">
+      <div class="divider"></div>
+      <span class="section-label">Categoria</span>
+      <p style="margin-bottom:2rem;">{{ articolo.tag }}</p>
+      <a href="/news" class="btn" style="display:block;text-align:center;margin-bottom:1rem;">
+        Tutti gli articoli
+      </a>
+      <a href="/contatti" class="btn btn-accent" style="display:block;text-align:center;">
+        Contattaci
+      </a>
+    </aside>
+  </div>
+</section>
+{% endblock %}

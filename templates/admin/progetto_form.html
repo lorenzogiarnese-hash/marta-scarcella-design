@@ -1,0 +1,76 @@
+{% extends "admin/base.html" %}
+{% block page_title %}{{ 'Modifica progetto' if progetto else 'Nuovo progetto' }}{% endblock %}
+{% block topbar_actions %}
+  <a href="/admin/progetti" class="btn">← Torna alla lista</a>
+{% endblock %}
+
+{% block content %}
+<div class="card">
+  <form method="POST"
+        action="{{ '/admin/progetti/' + progetto.id|string + '/modifica' if progetto else '/admin/progetti/nuovo' }}"
+        enctype="multipart/form-data">
+
+    <div class="form-grid">
+      <div class="form-group full">
+        <label>Titolo *</label>
+        <input type="text" name="titolo" value="{{ progetto.titolo if progetto else '' }}" required>
+      </div>
+      <div class="form-group">
+        <label>Categoria</label>
+        <input type="text" name="categoria" value="{{ progetto.categoria if progetto else '' }}"
+               placeholder="es. Residenziale, Contract…">
+      </div>
+      <div class="form-group">
+        <label>Location</label>
+        <input type="text" name="location" value="{{ progetto.location if progetto else '' }}"
+               placeholder="es. Milano">
+      </div>
+      <div class="form-group">
+        <label>Anno</label>
+        <input type="number" name="anno" value="{{ progetto.anno if progetto else '' }}"
+               placeholder="2024">
+      </div>
+      <div class="form-group">
+        <label>Ordine visualizzazione</label>
+        <input type="number" name="ordine" value="{{ progetto.ordine if progetto else 0 }}">
+      </div>
+      <div class="form-group full">
+        <label>Descrizione breve (per le card)</label>
+        <input type="text" name="descrizione_breve"
+               value="{{ progetto.descrizione_breve if progetto else '' }}"
+               placeholder="Max 300 caratteri">
+      </div>
+      <div class="form-group full">
+        <label>Descrizione completa</label>
+        <textarea name="descrizione">{{ progetto.descrizione if progetto else '' }}</textarea>
+      </div>
+      <div class="form-group">
+        <label>Immagine cover</label>
+        {% if progetto and progetto.immagine_cover %}
+        <img src="/media/{{ progetto.immagine_cover }}" style="width:100%;max-height:160px;object-fit:cover;margin-bottom:0.5rem;">
+        {% endif %}
+        <input type="file" name="immagine_cover" accept="image/*">
+      </div>
+      <div class="form-group" style="display:flex;flex-direction:column;gap:1rem;justify-content:center;">
+        <div class="checkbox-group">
+          <input type="checkbox" name="in_evidenza" id="in_evidenza"
+                 {{ 'checked' if progetto and progetto.in_evidenza else '' }}>
+          <label for="in_evidenza">In evidenza in homepage</label>
+        </div>
+        <div class="checkbox-group">
+          <input type="checkbox" name="pubblicato" id="pubblicato"
+                 {{ 'checked' if not progetto or progetto.pubblicato else '' }}>
+          <label for="pubblicato">Pubblicato</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-accent">
+        {{ 'Salva modifiche' if progetto else 'Crea progetto' }}
+      </button>
+      <a href="/admin/progetti" class="btn">Annulla</a>
+    </div>
+  </form>
+</div>
+{% endblock %}
