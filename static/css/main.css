@@ -19,6 +19,7 @@ body {
   background: var(--warm-white);
   color: var(--charcoal);
   line-height: 1.7;
+  overflow-x: hidden;
 }
 
 nav {
@@ -278,6 +279,16 @@ p { color: var(--mid); font-size: 0.95rem; line-height: 1.85; }
 .service-card h3 { font-size: 1.15rem; margin-bottom: 0.8rem; }
 .service-card p { font-size: 0.875rem; line-height: 1.8; }
 
+@media (max-width: 768px) {
+  .services-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+  .services-grid { grid-template-columns: 1fr; border: none; }
+  .service-card { border: none; border-bottom: 1px solid var(--border); padding: 1.5rem 0; }
+  .service-card:nth-child(even) { border-right: none; }
+  .service-card:nth-child(odd) { border-right: none; }
+  .service-card:nth-child(5) { border-bottom: 1px solid var(--border); }
+  .service-card:nth-child(6) { border-bottom: none; }
+}
+
 .divider { width: 40px; height: 1px; background: var(--accent); margin: 2rem 0; }
 
 #contatti { background: var(--charcoal); color: white; }
@@ -361,12 +372,12 @@ footer a {
 footer a:hover { color: var(--accent); }
 
 .page-hero {
-  padding: 8rem 4rem 4rem;
+  padding: 3.5rem 4rem 1.5rem;
   background: var(--cream);
   border-bottom: 1px solid var(--border);
 }
 
-.page-hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin-top: 1rem; }
+.page-hero h1 { font-size: clamp(1.8rem, 4vw, 3rem); margin-top: 0.6rem; }
 
 .progetti-lista {
   display: grid;
@@ -409,11 +420,11 @@ footer a:hover { color: var(--accent); }
   }
 
   /* PAGE HERO COMPATTA */
-.page-hero {
-  padding: 5rem 4rem 2.5rem;
-  background: var(--cream);
-  border-bottom: 1px solid var(--border);
-}
+  .page-hero {
+    padding: 3.5rem 4rem 1.5rem;
+    background: var(--cream);
+    border-bottom: 1px solid var(--border);
+  }
 
 .page-hero h1 {
   font-size: clamp(2rem, 4vw, 3.2rem);
@@ -448,7 +459,7 @@ footer a:hover { color: var(--accent); }
   }
 
   .page-hero {
-    padding: 4rem 1.5rem 2rem;
+    padding: 3rem 1.5rem 1.2rem;
   }
 
   /* HERO HOME */
