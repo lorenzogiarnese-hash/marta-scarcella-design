@@ -407,3 +407,97 @@ footer a:hover { color: var(--accent); }
     border-color: var(--charcoal);
     color: white;
   }
+
+  /* PAGE HERO COMPATTA */
+.page-hero {
+  padding: 5rem 4rem 2.5rem;
+  background: var(--cream);
+  border-bottom: 1px solid var(--border);
+}
+
+.page-hero h1 {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  margin-top: 0.8rem;
+}
+
+/* ============================================
+   RESPONSIVE — MOBILE FIRST
+   ============================================ */
+
+@media (max-width: 768px) {
+
+  /* NAV */
+  nav {
+    padding: 1rem 1.5rem;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+
+  .nav-links {
+    gap: 1.2rem;
+    flex-wrap: wrap;
+  }
+
+  .nav-links a {
+    font-size: 0.68rem;
+  }
+
+  /* SEZIONI */
+  section {
+    padding: 4rem 1.5rem;
+  }
+
+  .page-hero {
+    padding: 4rem 1.5rem 2rem;
+  }
+
+  /* HERO HOME */
+  #home {
+    grid-template-columns: 1fr;
+    padding: 6rem 1.5rem 3rem;
+    min-height: auto;
+    gap: 2.5rem;
+  }
+
+  .hero-image {
+    height: 320px;
+  }
+
+  .hero-badge {
+    bottom: -1rem;
+    left: -0.5rem;
+  }
+
+  .hero-text h1 {
+    font-size: clamp(2.8rem, 10vw, 4rem);
+  }
+
+  /* PORTFOLIO GRID */
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .portfolio-item:nth-child(1),
+  .portfolio-item:nth-child(2),
+  .portfolio-item:nth-child(3),
+  .portfolio-item:nth-child(4),
+  .portfolio-item:nth-child(5) {
+    grid-column: 1 / -1;
+    grid-row: auto;
+  }
+
+  /* SECTION HEADER */
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.2rem;
+    margin-bottom: 2.5rem;
+  }
+
+  /* NEWS GRID */
+  .news-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
