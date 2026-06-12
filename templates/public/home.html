@@ -1,12 +1,12 @@
 {% extends "public/base.html" %}
-{% block title %}Marta Scarcella Design — Interior Design Milano{% endblock %}
+{% block title %}Marta Scarcella Design — Interior Design{% endblock %}
 
 {% block content %}
 <section id="home">
   <div class="hero-text">
-    <span class="section-label">Interior Design · Milano</span>
+    <span class="section-label">Interior Design</span>
     <h1>Spazi che<br><em>raccontano</em><br>la tua storia.</h1>
-    <p>Progettiamo ambienti che fondono estetica e funzionalità, trasformando ogni spazio in un'esperienza senza tempo.</p>
+    <p>Progettazione di ambienti che fondono estetica e funzionalità, trasformando ogni spazio in un'esperienza senza tempo.</p>
     <div style="display:flex;gap:1rem;flex-wrap:wrap;">
       <a href="/portfolio" class="btn">Esplora il portfolio</a>
       <a href="/contatti" class="btn btn-accent">Richiedi una consulenza</a>
@@ -14,15 +14,16 @@
   </div>
   <div style="position:relative;">
     <div class="hero-image">
+      {% if hero_image %}
+      <img src="/media/{{ hero_image }}" 
+           style="width:100%;height:100%;object-fit:cover;">
+      {% else %}
       <div class="hero-image-inner">
         <div class="hero-image-placeholder">
           <p>Immagine principale</p>
         </div>
       </div>
-    </div>
-    <div class="hero-badge">
-      <span class="hero-badge-num">12+</span>
-      <span class="hero-badge-label">Anni di esperienza</span>
+      {% endif %}
     </div>
   </div>
 </section>
@@ -61,7 +62,7 @@
   <div class="section-header">
     <div>
       <span class="section-label">Aggiornamenti</span>
-      <h2>News & Journal</h2>
+      <h2>Blog</h2>
     </div>
     <a href="/news" class="btn">Tutti gli articoli</a>
   </div>
@@ -82,4 +83,43 @@
   </div>
 </section>
 {% endif %}
+
+<section id="servizi" style="background:var(--warm-white);">
+  <div class="services-layout">
+    <div class="services-intro">
+      <span class="section-label">Cosa offriamo</span>
+      <h2>Un design<br>su misura</h2>
+      <div class="divider"></div>
+      <p>Ogni progetto è un percorso unico, costruito intorno alle esigenze del cliente e alla visione dello spazio come opera d'arte funzionale.</p>
+      <div style="margin-top:2.5rem;">
+        <a href="/servizi" class="btn btn-accent">Scopri tutti i servizi</a>
+      </div>
+    </div>
+    <div class="services-grid">
+      {% for servizio in servizi_home %}
+      <div class="service-card">
+        <span class="service-num">{{ servizio.numero }}</span>
+        <h3>{{ servizio.titolo }}</h3>
+        <p>{{ servizio.descrizione }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section id="contatti" style="background:var(--charcoal);">
+  <div style="max-width:700px;margin:0 auto;text-align:center;">
+    <span class="section-label">Parliamoci</span>
+    <h2 style="color:white;margin-bottom:1.5rem;">Inizia il tuo progetto</h2>
+    <p style="color:#A8A49E;margin-bottom:2.5rem;font-size:1rem;">
+      Ogni grande spazio nasce da una conversazione. Raccontaci la tua idea e costruiremo insieme qualcosa di straordinario.
+    </p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <a href="/contatti" class="btn" style="border-color:white;color:white;">Scrivici</a>
+      <a href="/contatti" class="btn btn-accent">Richiedi una consulenza</a>
+    </div>
+  </div>
+</section>
+
+
 {% endblock %}

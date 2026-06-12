@@ -84,3 +84,10 @@ class Messaggio(Base):
     testo = Column(Text, nullable=False)
     letto = Column(Boolean, default=False)
     ricevuto_il = Column(DateTime, default=datetime.utcnow)
+
+class Impostazione(Base):
+    __tablename__ = "impostazioni"
+
+    id = Column(Integer, primary_key=True, index=True)
+    chiave = Column(String(100), unique=True, index=True, nullable=False)
+    valore = Column(Text)

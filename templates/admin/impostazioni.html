@@ -1,0 +1,26 @@
+{% extends "admin/base.html" %}
+{% block page_title %}Impostazioni sito{% endblock %}
+
+{% block content %}
+<div class="card" style="max-width:600px;">
+  <div class="card-title">Immagine hero homepage</div>
+  
+  {% if hero_image %}
+  <img src="/media/{{ hero_image }}" 
+       style="width:100%;max-height:300px;object-fit:cover;margin-bottom:1.5rem;">
+  <p style="font-size:0.8rem;color:var(--light);margin-bottom:1.5rem;">
+    Immagine attuale — carica una nuova per sostituirla.
+  </p>
+  {% endif %}
+
+  <form method="POST" action="/admin/impostazioni" enctype="multipart/form-data">
+    <div class="form-group">
+      <label>Carica nuova immagine hero</label>
+      <input type="file" name="hero_image" accept="image/*">
+    </div>
+    <div class="form-actions">
+      <button type="submit" class="btn btn-accent">Salva</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

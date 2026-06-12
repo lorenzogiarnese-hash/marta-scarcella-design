@@ -20,10 +20,23 @@ def home(request: Request, db: Session = Depends(get_db)):
         .filter(models.Articolo.pubblicato == True)\
         .order_by(models.Articolo.creato_il.desc())\
         .limit(3).all()
+    servizi_home = db.query(models.Servizio)\
+        .filter(models.Servizio.attivo == True)\
+        .order_by(models.Servizio.ordine)\
+        .limit(6).all()
+    hero_img = db.query(models.Impostazione)\
+        .filter(models.Impostazione.chiave == "hero_image")\
+        .first()
+
     return templates.TemplateResponse(
         request=request,
         name="public/home.html",
-        context={"progetti": progetti_evidenza, "articoli": articoli_recenti}
+        context={
+            "progetti": progetti_evidenza,
+            "articoli": articoli_recenti,
+            "servizi_home": servizi_home,
+            "hero_image": hero_img.valore if hero_img else None
+        }
     )
 
 

@@ -313,7 +313,7 @@
         <span class="icon">◻</span> Progetti
       </a>
       <a href="/admin/articoli" class="{{ 'active' if '/admin/articoli' in request.url.path else '' }}">
-        <span class="icon">◇</span> Articoli
+        <span class="icon">◇</span> Blog
       </a>
       <a href="/admin/servizi" class="{{ 'active' if '/admin/servizi' in request.url.path else '' }}">
         <span class="icon">◈</span> Servizi
@@ -321,6 +321,10 @@
       <div class="nav-section">Clienti</div>
       <a href="/admin/messaggi" class="{{ 'active' if '/admin/messaggi' in request.url.path else '' }}">
         <span class="icon">◉</span> Messaggi
+      </a>
+      <div class="nav-section">Sito</div>
+      <a href="/admin/impostazioni" class="{{ 'active' if '/admin/impostazioni' in request.url.path else '' }}">
+        <span class="icon">◈</span> Impostazioni
       </a>
     </nav>
     <div class="sidebar-footer">

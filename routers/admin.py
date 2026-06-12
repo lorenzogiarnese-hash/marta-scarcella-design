@@ -401,3 +401,36 @@ def elimina_messaggio(id: int, db: Session = Depends(get_db), admin=Depends(requ
         db.delete(messaggio)
         db.commit()
     return RedirectResponse(url="/admin/messaggi", status_code=302)
+
+@router.get("/impostazioni", response_class=HTMLResponse)
+def impostazioni(request: Request, db: Session = Depends(get_db), admin=Depends(require_admin)):
+    hero = db.query(models.Impostazione)\
+        .filter(models.Impostazione.chiave == "hero_image")\
+        .first()
+    return templates.TemplateResponse(
+        request=request,
+        name="admin/impostazioni.html",
+        context={"hero_image": hero.valore if hero else None}
+    )
+
+
+@router.post("/impostazioni")
+def salva_impostazioni(
+    request: Request,
+    hero_image: UploadFile = File(default=None),
+    db: Session = Depends(get_db),
+    admin=Depends(require_admin)
+):
+    if hero_image and hero_image.filename:
+        path = salva_immagine(hero_image, "impostazioni")
+        
+        esistente = db.query(models.Impostazione)\
+            .filter(models.Impostazione.chiave == "hero_image")\
+            .first()
+        if esistente:
+            esistente.valore = path
+        else:
+            db.add(models.Impostazione(chiave="hero_image", valore=path))
+        db.commit()
+    
+    return RedirectResponse(url="/admin/impostazioni", status_code=302)
