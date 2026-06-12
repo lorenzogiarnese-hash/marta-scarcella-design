@@ -435,80 +435,157 @@ footer a:hover { color: var(--accent); }
    RESPONSIVE — MOBILE FIRST
    ============================================ */
 
-@media (max-width: 768px) {
+   @media (max-width: 768px) {
 
-  /* NAV */
-  nav {
-    padding: 1rem 1.5rem;
-    flex-wrap: wrap;
-    gap: 0.8rem;
+    nav {
+      padding: 1rem 1.5rem;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+  
+    .nav-links {
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+  
+    .nav-links a { font-size: 0.68rem; }
+  
+    section { padding: 3rem 1.5rem; }
+  
+    .page-hero { padding: 3rem 1.5rem 1.2rem; }
+  
+    #home {
+      grid-template-columns: 1fr;
+      padding: 6rem 1.5rem 3rem;
+      min-height: auto;
+      gap: 2.5rem;
+    }
+  
+    .hero-image { height: 320px; }
+    .hero-badge { bottom: -1rem; left: -0.5rem; }
+    .hero-text h1 { font-size: clamp(2.8rem, 10vw, 4rem); }
+  
+    .hero-text div[style] {
+      flex-direction: column;
+    }
+  
+    .hero-text .btn {
+      width: 100%;
+      text-align: center;
+      display: block;
+    }
+  
+    /* PORTFOLIO */
+    .portfolio-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+  
+    .portfolio-item {
+      width: 100%;
+    }
+  
+    .portfolio-item:nth-child(1),
+    .portfolio-item:nth-child(2),
+    .portfolio-item:nth-child(3),
+    .portfolio-item:nth-child(4),
+    .portfolio-item:nth-child(5) {
+      grid-column: unset;
+      grid-row: unset;
+    }
+  
+    .portfolio-img {
+      aspect-ratio: 16/9;
+    }
+  
+    /* PROGETTI LISTA */
+    .progetti-lista {
+      grid-template-columns: 1fr;
+      padding: 3rem 1.5rem;
+      gap: 1.5rem;
+    }
+  
+    /* SECTION HEADER */
+    .section-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.2rem;
+      margin-bottom: 2.5rem;
+    }
+  
+    /* FILTRI PORTFOLIO */
+    .filtri {
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+  
+    /* NEWS */
+    .news-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  
+    /* SERVIZI */
+    .services-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+    .services-grid { grid-template-columns: 1fr; border: none; }
+    .service-card { border: none; border-bottom: 1px solid var(--border); padding: 1.5rem 0; }
+    .service-card:nth-child(even) { border-right: none; }
+    .service-card:nth-child(odd) { border-right: none; }
+    .service-card:nth-child(5) { border-bottom: 1px solid var(--border); }
+    .service-card:nth-child(6) { border-bottom: none; }
+  
+    /* CONTATTI */
+    #contatti { padding: 3rem 1.5rem; }
+  
+    .contact-layout {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      margin-top: 2rem;
+    }
+  
+    .contact-form { width: 100%; }
+  
+    .form-row { grid-template-columns: 1fr; }
+  
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      max-width: 100%;
+    }
+  
+    .form-submit {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+  
+    .btn-submit { width: 100%; text-align: center; }
+  
+    /* PROGETTO DETTAGLIO */
+    #progetto-layout {
+      grid-template-columns: 1fr !important;
+      gap: 2rem !important;
+    }
+  
+    /* FOOTER */
+    footer {
+      flex-direction: column;
+      gap: 1rem;
+      text-align: center;
+      padding: 2rem 1.5rem;
+    }
+  
+    .footer-links {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
   }
-
-  .nav-links {
-    gap: 1.2rem;
-    flex-wrap: wrap;
+  
+  @media (max-width: 480px) {
+    .logo { font-size: 0.95rem; }
+    .nav-links { gap: 0.8rem; }
+    h1 { font-size: clamp(2rem, 9vw, 2.8rem); }
   }
-
-  .nav-links a {
-    font-size: 0.68rem;
-  }
-
-  /* SEZIONI */
-  section {
-    padding: 4rem 1.5rem;
-  }
-
-  .page-hero {
-    padding: 3rem 1.5rem 1.2rem;
-  }
-
-  /* HERO HOME */
-  #home {
-    grid-template-columns: 1fr;
-    padding: 6rem 1.5rem 3rem;
-    min-height: auto;
-    gap: 2.5rem;
-  }
-
-  .hero-image {
-    height: 320px;
-  }
-
-  .hero-badge {
-    bottom: -1rem;
-    left: -0.5rem;
-  }
-
-  .hero-text h1 {
-    font-size: clamp(2.8rem, 10vw, 4rem);
-  }
-
-  /* PORTFOLIO GRID */
-  .portfolio-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .portfolio-item:nth-child(1),
-  .portfolio-item:nth-child(2),
-  .portfolio-item:nth-child(3),
-  .portfolio-item:nth-child(4),
-  .portfolio-item:nth-child(5) {
-    grid-column: 1 / -1;
-    grid-row: auto;
-  }
-
-  /* SECTION HEADER */
-  .section-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1.2rem;
-    margin-bottom: 2.5rem;
-  }
-
-  /* NEWS GRID */
-  .news-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-}
