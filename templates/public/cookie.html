@@ -1,0 +1,40 @@
+{% extends "public/base.html" %}
+{% block title %}Cookie Policy — Marta Scarcella Design{% endblock %}
+
+{% block content %}
+<div class="page-hero">
+  <span class="section-label">Informativa</span>
+  <h1>Cookie Policy</h1>
+</div>
+
+<section style="max-width:800px;margin:0 auto;padding:4rem 1.5rem;">
+  <div style="font-size:0.95rem;line-height:1.9;color:var(--mid);">
+
+    <p style="margin-bottom:1.5rem;"><strong style="color:var(--charcoal);">Ultimo aggiornamento:</strong> {{ now.strftime("%d/%m/%Y") if now else "" }}</p>
+
+    <h3 style="margin-top:2rem;margin-bottom:0.8rem;">Cosa sono i cookie</h3>
+    <p style="margin-bottom:1.5rem;">
+      I cookie sono piccoli file di testo che i siti visitati inviano al dispositivo dell'utente, dove vengono memorizzati per essere poi ritrasmessi agli stessi siti alla successiva visita.
+    </p>
+
+    <h3 style="margin-top:2rem;margin-bottom:0.8rem;">Cookie utilizzati da questo sito</h3>
+    <p style="margin-bottom:1.5rem;">
+      Questo sito utilizza esclusivamente cookie tecnici, necessari al corretto funzionamento delle pagine e all'erogazione del servizio. Non vengono utilizzati cookie di profilazione, cookie statistici di terze parti, né pixel pubblicitari.
+    </p>
+    <p style="margin-bottom:1.5rem;">
+      In particolare, i cookie tecnici utilizzati servono a mantenere la sessione di accesso per l'area amministrativa riservata del sito e non raccolgono alcuna informazione relativa ai visitatori pubblici del sito.
+    </p>
+
+    <h3 style="margin-top:2rem;margin-bottom:0.8rem;">Gestione dei cookie</h3>
+    <p style="margin-bottom:1.5rem;">
+      Trattandosi esclusivamente di cookie tecnici essenziali, non è necessario richiedere un consenso preventivo secondo la normativa vigente. È comunque possibile gestire o disabilitare i cookie tramite le impostazioni del proprio browser, tenendo presente che ciò potrebbe impedire il corretto funzionamento di alcune parti del sito.
+    </p>
+
+    <h3 style="margin-top:2rem;margin-bottom:0.8rem;">Contatti</h3>
+    <p style="margin-bottom:1.5rem;">
+      Per qualsiasi informazione relativa a questa cookie policy è possibile scrivere a studio@martascarcelladesign.com.
+    </p>
+
+  </div>
+</section>
+{% endblock %}

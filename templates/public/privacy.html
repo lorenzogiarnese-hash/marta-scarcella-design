@@ -1,0 +1,61 @@
+{% extends "public/base.html" %}
+{% block title %}Privacy Policy — Marta Scarcella Design{% endblock %}
+
+{% block content %}
+<div class="page-hero">
+  <span class="section-label">Informativa</span>
+  <h1>Privacy Policy</h1>
+</div>
+
+<section style="max-width:800px;margin:0 auto;padding:4rem 1.5rem;">
+  <div style="font-size:0.95rem;line-height:1.9;color:var(--mid);">
+
+    <p style="margin-bottom:1.5rem;"><strong style="color:var(--charcoal);">Ultimo aggiornamento:</strong> {{ now.strftime("%d/%m/%Y") if now else "" }}</p>
+
+    <h3 style="margin-top:2rem;margin-bottom:0.8rem;">Titolare del trattamento</h3>
+    <p style="margin-bottom:1.5rem;">
+      Marta Scarcella Design<br>
+      Email: studio@martascarcelladesign.com
+    </p>
+
+    <h3 style="margin-top:2rem;margin-bottom:0.8rem;">Dati raccolti</h3>
+    <p style="margin-bottom:1.5rem;">
+      Questo sito raccoglie esclusivamente i dati personali che l'utente fornisce volontariamente attraverso il modulo di contatto presente nella sezione "Contatti": nome, cognome, indirizzo email, tipologia di progetto e contenuto del messaggio.
+    </p>
+    <p style="margin-bottom:1.5rem;">
+      Non vengono raccolti dati di navigazione tramite cookie di tracciamento, strumenti di analisi statistica o pixel pubblicitari di terze parti.
+    </p>
+
+    <h3 style="margin-top:2rem;margin-bottom:0.8rem;">Finalità del trattamento</h3>
+    <p style="margin-bottom:1.5rem;">
+      I dati raccolti tramite il modulo di contatto sono utilizzati esclusivamente per rispondere alle richieste di informazioni o di consulenza inviate dall'utente, e per la gestione della eventuale successiva relazione professionale.
+    </p>
+
+    <h3 style="margin-top:2rem;margin-bottom:0.8rem;">Base giuridica</h3>
+    <p style="margin-bottom:1.5rem;">
+      Il trattamento si basa sul consenso dell'utente, espresso tramite l'invio volontario del modulo di contatto (art. 6, par. 1, lett. a, GDPR).
+    </p>
+
+    <h3 style="margin-top:2rem;margin-bottom:0.8rem;">Conservazione dei dati</h3>
+    <p style="margin-bottom:1.5rem;">
+      I dati raccolti tramite il modulo di contatto sono conservati per il tempo necessario a gestire la richiesta e, in caso di instaurazione di un rapporto professionale, per la durata dello stesso e secondo gli obblighi di legge applicabili.
+    </p>
+
+    <h3 style="margin-top:2rem;margin-bottom:0.8rem;">Comunicazione e diffusione</h3>
+    <p style="margin-bottom:1.5rem;">
+      I dati non vengono comunicati a terzi né diffusi, salvo obblighi di legge.
+    </p>
+
+    <h3 style="margin-top:2rem;margin-bottom:0.8rem;">Diritti dell'utente</h3>
+    <p style="margin-bottom:1.5rem;">
+      In qualsiasi momento l'utente può esercitare i diritti previsti dagli articoli 15-22 del GDPR, tra cui il diritto di accesso, rettifica, cancellazione, limitazione del trattamento e opposizione, scrivendo all'indirizzo email indicato sopra.
+    </p>
+
+    <h3 style="margin-top:2rem;margin-bottom:0.8rem;">Sicurezza dei dati</h3>
+    <p style="margin-bottom:1.5rem;">
+      I dati sono trattati con misure tecniche e organizzative adeguate a garantirne la sicurezza, l'integrità e la riservatezza.
+    </p>
+
+  </div>
+</section>
+{% endblock %}

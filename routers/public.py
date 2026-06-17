@@ -117,6 +117,24 @@ def articolo_dettaglio(slug: str, request: Request, db: Session = Depends(get_db
     )
 
 
+
+@router.get("/privacy-policy", response_class=HTMLResponse)
+def privacy_policy(request: Request):
+    return templates.TemplateResponse(
+        request=request,
+        name="public/privacy.html",
+        context={}
+    )
+
+
+@router.get("/cookie-policy", response_class=HTMLResponse)
+def cookie_policy(request: Request):
+    return templates.TemplateResponse(
+        request=request,
+        name="public/cookie.html",
+        context={}
+    )
+
 @router.get("/contatti", response_class=HTMLResponse)
 def contatti(request: Request):
     return templates.TemplateResponse(
